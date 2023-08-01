@@ -6,7 +6,7 @@ import Modal from "./Modal"; // Make sure you import the Modal component
 import ShowMovie from "./ShowMovie";
 import "./Modal.css";
 
-const API_URL = "http://www.omdbapi.com?apikey=";
+const API_URL = "http://www.omdbapi.com?apikey=de0effc4";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -38,6 +38,12 @@ const App = () => {
     }
   };
 
+  const handleSearchKeyPress = (event) => {
+    if (event.key === "Enter") {
+      searchMovies(searchTerm);
+    }
+  };
+
   useEffect(() => {
     searchMovies("X-men");
   }, []);
@@ -50,6 +56,7 @@ const App = () => {
           placeholder="Search for Movies"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
+          onKeyPress={handleSearchKeyPress} // Add the event handler here
         />
         <FcSearch
           alt="search"

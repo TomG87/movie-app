@@ -20,8 +20,8 @@ const ShowMovie = ({ movie }) => {
       <div>
         <span>{movie.Type}</span>
         <h3>{movie.Title}</h3>
-        <p>{movie.Plot}</p> {/* Add the Plot information here */}
         <p>IMDB Rating: {movie.imdbRating}</p>
+        <p>{movie.Plot}</p>
       </div>
     </div>
   );
