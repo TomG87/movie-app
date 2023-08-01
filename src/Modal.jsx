@@ -1,8 +1,8 @@
 import React from "react";
-import "./Modal.css";
+import ShowMovie from "./ShowMovie";
 
-export function Modal(props) {
-  if (props.show) {
+const Modal = (props) => {
+  if (props.isOpen) {
     return (
       <div className="modal-background">
         <section className="modal-main">
@@ -14,8 +14,8 @@ export function Modal(props) {
       </div>
     );
   } else {
-    return null; // Render nothing if show prop is false
+    return null; // Render nothing if isOpen prop is false
   }
-}
+};
 
 export default Modal;

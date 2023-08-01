@@ -1,16 +1,27 @@
 import React from "react";
 
-const ShowMovie = ({ movie, closeModal }) => {
+const ShowMovie = ({ movie }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>
-          <img src={movie.Poster} alt={movie.Title} />
-        </h2>
+    <div className="movie">
+      <div>
+        <p>{movie.Year}</p>
+      </div>
+
+      <div>
+        <img
+          src={
+            movie.Poster !== "N/A"
+              ? movie.Poster
+              : "https://via.placeholder.com/400"
+          }
+          alt={movie.Title}
+        />
+      </div>
+      <div>
+        <span>{movie.Type}</span>
         <h3>{movie.Title}</h3>
-        console.log(movie.plot)
-        <p>{movie.Plot}</p>
-        <p>IMDb Rating: {movie.imdbRating}</p>
+        <p>{movie.Plot}</p> {/* Add the Plot information here */}
+        <p>IMDB Rating: {movie.imdbRating}</p>
       </div>
     </div>
   );

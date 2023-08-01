@@ -13,9 +13,15 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const handleMovieClick = (movie) => {
-    setSelectedMovie(movie);
-    console.log(selectedMovie);
+  const handleMovieClick = async (movie) => {
+    try {
+      const response = await fetch(`${API_URL}&i=${movie.imdbID}`);
+      const data = await response.json();
+      console.log(data);
+      setSelectedMovie(data); // Update the state with the fetched movie details
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
   };
 
   const closeModal = () => {
@@ -23,9 +29,13 @@ const App = () => {
   };
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
-    setMovies(data.Search);
+    try {
+      const response = await fetch(`${API_URL}&s=${title}`);
+      const data = await response.json();
+      setMovies(data.Search);
+    } catch (error) {
+      console.error("Error searching movies:", error);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +61,7 @@ const App = () => {
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
-            <div key={movie.Plot} onClick={() => handleMovieClick(movie)}>
+            <div key={movie.imdbID} onClick={() => handleMovieClick(movie)}>
               <MovieCard movie={movie} />
             </div>
           ))}
